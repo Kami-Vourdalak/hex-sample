@@ -1,3 +1,3 @@
-const greet = 'hello'
+const greet = "hello";
 
-export default greet
+export default greet;
