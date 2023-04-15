@@ -26,17 +26,17 @@ export default class RestApi implements IForAuthenticating {
     return { ...user, ...authDetails, permissions };
   }
 
-  async register(user: User, password: string): Promise<AuthenticatedUser> {
-    const repoUser = await this.repoQuerier.createUser(user, password);
+  async register(user: User): Promise<AuthenticatedUser> {
+    const repoUser = await this.repoQuerier.createUser(user);
 
     const authDetails = await this.controlAuthenticator.getAuthDetails(
       user.email,
-      password
+      user.password
     );
 
     const permissions = await this.controlAuthenticator.getPermissions(
       user.email,
-      password
+      user.password
     );
 
     return { ...repoUser, ...authDetails, permissions };

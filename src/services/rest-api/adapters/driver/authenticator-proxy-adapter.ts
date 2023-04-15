@@ -8,7 +8,7 @@ export class AuthenticatorProxyAdapter implements IForAuthenticating {
     return this.restApi.login(email, password);
   }
 
-  register(user: User, password: string): Promise<AuthenticatedUser> {
-    return this.restApi.register(user, password);
+  register(user: User): Promise<AuthenticatedUser> {
+    return this.restApi.register(user);
   }
 }

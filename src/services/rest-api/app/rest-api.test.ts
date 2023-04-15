@@ -11,7 +11,7 @@ describe("rest-api", function () {
   const repoQuerierStub = new RepoQuerierStubAdapter();
 
   const restApiMock = new RestApi(controlAuthenticatorStub, repoQuerierStub);
-  it.concurrent("should return authenticated user on login", async function () {
+  it("should return authenticated user on login", async function () {
     // Arrange.
     const emailMock = "foo@bar.com";
     const passMock = "123456";
@@ -22,9 +22,9 @@ describe("rest-api", function () {
     // Assert.
     expect(result).toMatchInlineSnapshot(`
       {
-        "email": "carl@gmail.foo.com",
-        "id": "id-2kl21j3k123-3213-asd",
-        "name": "Carl",
+        "email": "carl@stub.foo",
+        "id": "id-stub",
+        "name": "CarlStub",
         "permissions": {
           "admin": true,
           "user": true,
@@ -35,22 +35,19 @@ describe("rest-api", function () {
     `);
   });
 
-  it.concurrent(
-    "should return authenticated user on register",
-    async function () {
-      // Arrange.
-      const userMock: User = { name: "foo", email: "bar" };
-      const passMock = "123456";
+  it("should return authenticated user on register", async function () {
+    // Arrange.
+    const userMock: User = { name: "foo", email: "bar", password: "123456" };
 
-      // Act.
-      const result = await restApiMock.register(userMock, passMock);
+    // Act.
+    const result = await restApiMock.register(userMock);
 
-      // Assert.
-      expect(result).toMatchInlineSnapshot(`
+    // Assert.
+    expect(result).toMatchInlineSnapshot(`
         {
-          "email": "carl@gmail.foo.com",
-          "id": "id-2kl21j3k123-3213-asd",
-          "name": "Carl",
+          "email": "carl@stub.foo",
+          "id": "id-stub",
+          "name": "CarlStub",
           "permissions": {
             "admin": true,
             "user": true,
@@ -59,6 +56,5 @@ describe("rest-api", function () {
           "token": "token123",
         }
       `);
-    }
-  );
+  });
 });

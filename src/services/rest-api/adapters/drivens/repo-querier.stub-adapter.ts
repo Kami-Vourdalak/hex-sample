@@ -1,18 +1,18 @@
 import { IForRepoQuerying } from "@/services/rest-api/ports/drivens";
-import { User } from "@/services/repository/app/schemas";
+import { RepoUser } from "@/services/repository/app/schemas";
 
-const userMock: User = {
-  id: "id-2kl21j3k123-3213-asd",
-  name: "Carl",
-  email: "carl@gmail.foo.com",
+const userMock: RepoUser = {
+  id: "id-stub",
+  name: "CarlStub",
+  email: "carl@stub.foo",
 };
 
 export class RepoQuerierStubAdapter implements IForRepoQuerying {
-  getUser(): Promise<User> {
+  getUser(): Promise<RepoUser> {
     return Promise.resolve(userMock);
   }
 
-  createUser(): Promise<User> {
+  createUser(): Promise<RepoUser> {
     return Promise.resolve(userMock);
   }
 }
